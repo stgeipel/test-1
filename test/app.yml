@@ -54,6 +54,6 @@ spec:
             path: '/'
             backend:
               service:
-                name: foo-service
+                name: app-test-1-svc
                 port:
                   number: 1212
