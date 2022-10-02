@@ -9,7 +9,7 @@ metadata:
   name: app-test-1-deploy
   namespace: app-test-1
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: app-test-1
@@ -36,8 +36,24 @@ spec:
   type: ClusterIP
   ports:
     - name: http
-      port: 80
+      port: 1212
       targetPort: 1212
       protocol: TCP
   selector:
     app: app-test-1
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: foo-service
+                port:
+                  number: 1212
