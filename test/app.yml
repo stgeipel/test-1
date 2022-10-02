@@ -11,7 +11,7 @@ metadata:
 spec:
   replicas: 5
   selector:
-    matchLabels: 
+    matchLabels:
       app: app-test-1
   template:
     metadata:
@@ -19,11 +19,11 @@ spec:
         app: app-test-1
     spec:
       containers:
-      - name: app-test-1
-        image: nginx
-        ports:
-        - name: web
-          containerPort: 80
+        - name: app-test-1
+          image: stgp/test-app-1
+          ports:
+            - name: web
+              containerPort: 1212
 ---
 apiVersion: v1
 kind: Service
@@ -35,9 +35,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - name:  http
-    port:  80
-    targetPort: 80
-    protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 1212
+      protocol: TCP
   selector:
     app: app-test-1
